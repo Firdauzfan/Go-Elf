@@ -10,7 +10,7 @@ session_start();
 // Cek Login Apakah Sudah Login atau Belum
 if (!isset($_SESSION['ID'])){
 // Jika Tidak Arahkan Kembali ke Halaman Login
-  header("location: Login.php");
+  header("location: login.php");
 } 
 ?>
 
@@ -82,26 +82,30 @@ if (!isset($_SESSION['ID'])){
             <tr class="danger">
               <th width="8%">No</th>
               <th>Username</th>
-              <th>Email</th>
-              <th>Created date</th>
+              <th>Keberangkatan</th>
+              <th>Tujuan</th>
+              <th>Elf ke</th>
+              <th>Booking Time</th>
             </tr>
           </thead>
           <tbody>
             <?php
-              $sql = mysqli_query($con, "SELECT * FROM users") or die(mysqli_error());
+              $sql = mysqli_query($con, "SELECT * FROM `reservation` WHERE date(date_booking) = CURDATE()") or die(mysqli_error());
               $i=0;
               while($data=mysqli_fetch_array($sql)){
                 $i++;
-                $id = $data['id'];
                 $username = $data['username'];
-                $email = $data['email'];
-                $created_at = $data['created_at'];
-                $new_created_at = date("d-m-Y", strtotime($created_at));
+                $Keberangkatan = $data['keberangkatan'];
+                $tujuan = $data['tujuan'];
+                $elf = $data['no_elf'];
+                $booking_at = $data['date_booking'];
                 echo '<tr class="info">';
                     echo '<td>'.$i.'</td>';
                     echo '<td>'.$username.'</td>';
-                    echo '<td>'.$email.'</td>';
-                    echo '<td>'.$new_created_at.'</td>';
+                    echo '<td>'.$Keberangkatan.'</td>';
+                    echo '<td>'.$tujuan.'</td>';
+                    echo '<td>'.$elf.'</td>';
+                    echo '<td>'.$booking_at.'</td>';
                 echo '</tr>';     
               }
             ?>

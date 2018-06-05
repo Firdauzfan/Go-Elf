@@ -10,7 +10,7 @@ session_start();
 // Cek Login Apakah Sudah Login atau Belum
 if (!isset($_SESSION['ID'])){
 // Jika Tidak Arahkan Kembali ke Halaman Login
-  header("location: Login.php");
+  header("location: login.php");
 } 
 ?>
 

@@ -8,7 +8,7 @@ session_start();
 // Cek Login Apakah Sudah Login atau Belum
 if (!isset($_SESSION['ID'])){
 // Jika Tidak Arahkan Kembali ke Halaman Login
-  header("location: Login.php");
+  header("location: login.php");
 } 
 ?>
 
@@ -81,17 +81,27 @@ if (!isset($_SESSION['ID'])){
             </div>
             <div class="box-body">
               <form action="#" method="post">
-                <div class="form-group" style="width: 60%;">
+                <div class="form-group">
                   <label>Keberangkatan</label>
-                  <select class="form-control" id="keberangkatan" onchange="changeKeberangkatan(this.value);">
-                    <option style="text-align: center;">--- Pilih ---</option>
-                    <option value="Intercon-Tekno">Grand Intercon</option>
-                    <option value="Tekno-Intercon">Taman Tekno BSD</option>
-                  </select>
+                    <?php
+                    if (date("h:i:sa")>="05:00:00AM" && date("h:i:sa")<"09:00:00AM") {
+                       echo '<input type="text" value="Intercon" class="form-control" name="keberangkatan" id="keberangkatan" style="width: 60%;" readonly="true"/>';
+                    }
+                    else{
+                       echo '<input type="text" value="Tekno" class="form-control" name="keberangkatan" id="keberangkatan" style="width: 60%;" disabled="disabled"/>';
+                    }
+                    ?>
                 </div>
                 <div class="form-group">
                   <label>Tujuan</label>
-                    <input type="text" class="form-control" name="tujuan" id="tujuan" style="width: 60%;" disabled="disabled" />
+                    <?php
+                    if (date("h:i:sa")>="07:00:00AM" && date("h:i:sa")<"09:00:00AM") {
+                       echo ' <input type="text" value="Tekno" class="form-control" name="tujuan" id="tujuan" style="width: 60%;" disabled="disabled" />';
+                    }
+                    else{
+                       echo '<input type="text" value="Intercon" class="form-control" name="tujuan" id="tujuan" style="width: 60%;" disabled="disabled" />';
+                    }
+                    ?>
                 </div>
                 <div class="form-group" style="width: 60%;">
                   <label>Elf ke-</label>
@@ -213,8 +223,8 @@ if (!isset($_SESSION['ID'])){
 
                     $('#search').click(function(event){
                       //document.getElementById("1_1").reset();
-                      var e = document.getElementById('keberangkatan');
-                      var tujuan = e.options[e.selectedIndex].value;
+                      var keberangkatan = document.getElementById('keberangkatan');
+                      var tujuan = document.getElementById('tujuan').value;
                       
                       var f = document.getElementById('no_elf');
                       var no_elf = f.options[f.selectedIndex].value;  
@@ -237,8 +247,8 @@ if (!isset($_SESSION['ID'])){
 
                     $("#book").click(function(event){
                       if (confirm('Apakah anda yakin memilih kursi ini ?')){
-                        var e = document.getElementById('keberangkatan');
-                        var tujuan = e.options[e.selectedIndex].value;
+                        var keberangkatan = document.getElementById('keberangkatan').value;
+                        var tujuan = document.getElementById('tujuan').value;
                         
                         var f = document.getElementById('no_elf');
                         var no_elf = f.options[f.selectedIndex].value;
@@ -253,7 +263,7 @@ if (!isset($_SESSION['ID'])){
                             type: "POST",
                             dataType:"json",
                             url: "proses/reservation_proses.php",
-                            data: "seat="+seat+"&no_elf="+no_elf+"&tujuan="+tujuan,
+                            data: "seat="+seat+"&no_elf="+no_elf+"&keberangkatan="+keberangkatan+"&tujuan="+tujuan,
                             complete: function () {
                               },
                               success: function (msg) {                    

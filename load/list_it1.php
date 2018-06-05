@@ -2,7 +2,7 @@
 include('../config/connect.php');
 session_start();
 if (!isset($_SESSION['ID'])){
-  header("location: Login.php");
+  header("location: login.php");
 }
 
 $tujuan = $_POST['tujuan'];

@@ -37,17 +37,16 @@
 <script src="assets/dist/js/demo.js"></script>
 
 <script type="text/javascript">
-  function changeKeberangkatan(keberangkatan){
-    var e = document.getElementById('keberangkatan');
-    var keberangkatan = e.options[e.selectedIndex].value;
-    if(keberangkatan=="Intercon-Tekno"){
-      	document.getElementById('tujuan').value="Taman Tekno BSD";  
-    }else if(keberangkatan=="Tekno-Intercon"){
-      	document.getElementById('tujuan').value="Grand Intercon";
-    }else{
-    	document.getElementById('tujuan').value="";	
-    }
-  }
+  // function changeKeberangkatan(keberangkatan){
+  //   var keberangkatan = document.getElementById('keberangkatan').value;
+  //   if(keberangkatan=="Intercon-Tekno"){
+  //     	document.getElementById('tujuan').value="Taman Tekno BSD";  
+  //   }else if(keberangkatan=="Tekno-Intercon"){
+  //     	document.getElementById('tujuan').value="Grand Intercon";
+  //   }else{
+  //   	document.getElementById('tujuan').value="";	
+  //   }
+  // }
 
   // function showSeat(){
   // 	var e = document.getElementById('keberangkatan');
