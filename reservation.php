@@ -37,6 +37,7 @@ if (!isset($_SESSION['ID'])){
                 <div class="form-group">
                   <label>Keberangkatan</label>
                     <?php
+                    date_default_timezone_set("Asia/Bangkok");
                     if (date("h:i:sa")>="05:00:00AM" && date("h:i:sa")<"09:00:00AM") {
                        echo '<input type="text" value="Intercon" class="form-control" name="keberangkatan" id="keberangkatan" style="width: 60%;" readonly="true"/>';
                     }
