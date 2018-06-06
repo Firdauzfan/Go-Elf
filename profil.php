@@ -30,7 +30,9 @@ if(isset($_POST['tSubmit'])){
 
  if ($fileName == '' || $fileSize == 0){ 
    $updateSQL = mysqli_query($con, "UPDATE users SET username='$Name',department='$Dept',jabatan='$Jabatan',email='$Email',no_hp='$NoHP' WHERE id_pegawai='$Id_Pegawai'") or die(mysqli_error());
-   echo "Data berhasil disimpan";
+    echo "<script>";
+    echo "alert('Data Berhasil Disimpan')"; 
+    echo "</script>"; 
  }else{   
   //penamaan photo
   $tglupload  = gmdate('ymdHis',time()+60*60*7);
@@ -66,7 +68,9 @@ if(isset($_POST['tSubmit'])){
      $pesan = "Ukuran file Photo maksimal 200 kb";
   }else{
     $updateSQL = mysqli_query($con, "UPDATE users SET username='$Name',department='$Dept',jabatan='$Jabatan',email='$Email',no_hp='$NoHP', photo='$uploadfile' WHERE id_pegawai='$Id_Pegawai'") or die(mysqli_error());  
-     echo "Data berhasil disimpan";
+    echo "<script>";
+    echo "alert('Data Berhasil Disimpan')"; 
+    echo "</script>";
   }
 
 }
