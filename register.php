@@ -20,6 +20,13 @@ date_default_timezone_set('Asia/Jakarta');
 <?php
 include('config/connect.php');
 if(isset($_POST['tSubmit'])){
+
+ if (empty($_POST['Pass']) || empty($_POST['id_pegawai'])) {
+ 	echo "<script>";
+    echo "alert('Id Pegawai dan Password Harus Diisi')"; 
+   	echo "</script>"; 
+ }else{
+
  $Id_Pegawai= $_POST['id_pegawai'];
  $Name = $_POST['Name'];
  $Pass = $_POST['Pass'];
@@ -27,10 +34,23 @@ if(isset($_POST['tSubmit'])){
  $Jabatan = $_POST['jabatan'];
  $Email = $_POST['email'];
  $NoHP= $_POST['no_hp'];
-	 //$dept_id =  $_POST['dept_id'];
-	 $sql = mysqli_query($con, "INSERT INTO users (id_user,id_pegawai,username,department,jabatan,email,no_hp,password,created_at) VALUES ('', '$Id_Pegawai', '$Name','$Dept','$Jabatan','$Email','$NoHP','$Pass', NOW())") or die(mysqli_error());
 
- echo '<script language="javascript">document.location="login.php";</script>';
+ $sql_cek = mysqli_query($con, "SELECT COUNT(username) AS jml FROM users WHERE id_pegawai='$Id_Pegawai' ") or die(mysqli_error());
+ $row = mysqli_fetch_assoc($sql_cek);
+ $jml = $row["jml"];
+
+ if ($jml<1) {
+ 	$sql = mysqli_query($con, "INSERT INTO users (id_user,id_pegawai,username,department,jabatan,email,no_hp,password,created_at) VALUES ('', '$Id_Pegawai', '$Name','$Dept','$Jabatan','$Email','$NoHP','$Pass', NOW())") or die(mysqli_error());
+
+ 	echo '<script language="javascript">document.location="login.php";</script>';
+ }
+ else{
+ 	echo "<script>";
+    echo "alert('Id Pegawai Sudah Terdaftar!')"; 
+   	echo "</script>"; 
+ }
+ }
+
 }
 ?>
 
@@ -66,6 +86,7 @@ if(isset($_POST['tSubmit'])){
 								<input class="form-control" placeholder="Password" name="Pass" type="password">
 							</div>
 							<br>
+							<a href="login.php" class="btn btn-primary">Back</a>
 							<input type="Submit" class="btn btn-primary" name="tSubmit" value=" Register ">
 						</fieldset>
 					</form>
