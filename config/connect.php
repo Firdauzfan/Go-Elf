@@ -1,7 +1,7 @@
 <?php
 $HOST="localhost";
 $USER="root";
-$PASS="";
+$PASS="root";
 $DB="go_elf";
  
 //Connecting to Database 
