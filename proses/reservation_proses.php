@@ -18,10 +18,10 @@ $jml = $row["jml"];
 
 if($jml<1){
 	$sql = mysqli_query($con, "INSERT INTO reservation (id, username, no_seat, no_elf, keberangkatan, tujuan, date_booking) VALUES ('', '$name', '$seat', '$no_elf','$keberangkatan', '$tujuan', NOW())") or die(mysqli_error());	
-}else{
-	echo '<script language="javascript">';
-	echo 'alert("Anda sudah booking")';
-	echo '</script>';
+}else{ ?>
+   <script>
+   alert('Anda Sudah Booking!')
+   </script>
+<?php
 }
-
 ?>

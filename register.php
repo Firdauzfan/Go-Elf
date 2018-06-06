@@ -8,17 +8,11 @@ error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 <html>
 <head>
 <?php
-//DATABSE DETAILS//
-// $host_name="localhost";
-// $user_name="gspecrmc_user";
-// $password="gspepws123";
-// $database="gspecrmc_data";
-
 date_default_timezone_set('Asia/Jakarta');
 ?>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Login</title>
+<title>Register</title>
 
 <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -26,45 +20,53 @@ date_default_timezone_set('Asia/Jakarta');
 <?php
 include('config/connect.php');
 if(isset($_POST['tSubmit'])){
- $Id_Pegawai = $_POST['id_pegawai'];
+ $Id_Pegawai= $_POST['id_pegawai'];
+ $Name = $_POST['Name'];
  $Pass = $_POST['Pass'];
+ $Dept = $_POST['dept'];
+ $Jabatan = $_POST['jabatan'];
+ $Email = $_POST['email'];
+ $NoHP= $_POST['no_hp'];
 	 //$dept_id =  $_POST['dept_id'];
-	 $sql = mysqli_query($con, "SELECT * FROM users WHERE id_pegawai='$Id_Pegawai' AND password='$Pass'") or die(mysqli_error());
-	 if(mysqli_num_rows($sql) == 0){
-	  echo "<script>alert('ID Pegawai atau Password salah')</script>";
-	 }else{
-	 	$row = mysqli_fetch_assoc($sql);
-	 	$_SESSION['ID']=$row['id_user'];
-	 	$_SESSION['id_peg']=$row['id_pegawai'];
-	 	$_SESSION['name']=$row['username'];
-	 	$_SESSION['date']=$row['created_at'];
-	 	$_SESSION['email']=$row['email'];
-	 	$_SESSION['dept']=$row['department'];
-	 	$_SESSION['jabatan']=$row['jabatan'];
-	 	$_SESSION['no_hp']=$row['no_hp'];
-	   echo '<script language="javascript">document.location="reservation.php";</script>';
-	 }
+	 $sql = mysqli_query($con, "INSERT INTO users (id_user,id_pegawai,username,department,jabatan,email,no_hp,password,created_at) VALUES ('', '$Id_Pegawai', '$Name','$Dept','$Jabatan','$Email','$NoHP','$Pass', NOW())") or die(mysqli_error());
+
+ echo '<script language="javascript">document.location="login.php";</script>';
 }
 ?>
+
 <body>
 	<br>
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">
 				<img class="img-responsive" alt="GSPE" src="images/logo gspe.png">
-				<div class="panel-heading"><b>Login</b></div>
+				<div class="panel-heading"><b>Register</b></div>
 				<div class="panel-body">
-					<form role="form" name="LoginF" action="login.php" method="POST">
+					<form role="form" name="Register" action="register.php" method="POST">
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" placeholder="ID Pegawai" name="id_pegawai" type="text" autofocus="">
+								<input class="form-control" placeholder="Id pegawai" name="id_pegawai" type="text" autofocus="">
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Username" name="Name" type="text" autofocus="">
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Department" name="dept" type="text" autofocus="">
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Jabatan" name="jabatan" type="text" autofocus="">
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="email" placeholder="Email" name="email" type="text" autofocus="">
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="No HP" name="no_hp" type="text" autofocus="">
 							</div>
 							<div class="form-group">
 								<input class="form-control" placeholder="Password" name="Pass" type="password">
 							</div>
 							<br>
-							<input type="Submit" class="btn btn-primary" name="tSubmit" value=" Login ">
-							<a href="register.php" class="btn btn-primary">Register</a>
+							<input type="Submit" class="btn btn-primary" name="tSubmit" value=" Register ">
 						</fieldset>
 					</form>
 				</div>
