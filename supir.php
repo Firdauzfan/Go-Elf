@@ -42,7 +42,7 @@ if (!isset($_SESSION['ID'])){
           </thead>
           <tbody>
             <?php
-              $sql = mysqli_query($con, "SELECT * FROM supir") or die(mysqli_error());
+              $sql = mysqli_query($con, "SELECT * FROM users WHERE role='supir'") or die(mysqli_error());
               $i=0;
               while($data=mysqli_fetch_array($sql)){
                 $i++;

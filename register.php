@@ -21,9 +21,9 @@ date_default_timezone_set('Asia/Jakarta');
 include('config/connect.php');
 if(isset($_POST['tSubmit'])){
 
- if (empty($_POST['Pass']) || empty($_POST['id_pegawai'])) {
+ if (empty($_POST['Pass']) || empty($_POST['id_pegawai']) || empty($_POST['role'])) {
  	echo "<script>";
-    echo "alert('Id Pegawai dan Password Harus Diisi')"; 
+    echo "alert('Id Pegawai dan Password dan Role Harus Diisi')"; 
    	echo "</script>"; 
  }else{
 
@@ -34,13 +34,14 @@ if(isset($_POST['tSubmit'])){
  $Jabatan = $_POST['jabatan'];
  $Email = $_POST['email'];
  $NoHP= $_POST['no_hp'];
+ $Role= $_POST['role'];
 
  $sql_cek = mysqli_query($con, "SELECT COUNT(username) AS jml FROM users WHERE id_pegawai='$Id_Pegawai' ") or die(mysqli_error());
  $row = mysqli_fetch_assoc($sql_cek);
  $jml = $row["jml"];
 
  if ($jml<1) {
- 	$sql = mysqli_query($con, "INSERT INTO users (id_user,id_pegawai,username,department,jabatan,email,no_hp,password,created_at) VALUES ('', '$Id_Pegawai', '$Name','$Dept','$Jabatan','$Email','$NoHP','$Pass', NOW())") or die(mysqli_error());
+ 	$sql = mysqli_query($con, "INSERT INTO users (id_user,id_pegawai,username,department,jabatan,email,no_hp,password,role,created_at) VALUES ('', '$Id_Pegawai', '$Name','$Dept','$Jabatan','$Email','$NoHP','$Pass','$Role', NOW())") or die(mysqli_error());
 
  	echo '<script language="javascript">document.location="login.php";</script>';
  }
@@ -84,6 +85,14 @@ if(isset($_POST['tSubmit'])){
 							</div>
 							<div class="form-group">
 								<input class="form-control" placeholder="Password" name="Pass" type="password">
+							</div>
+							<div class="form-group">
+								<label>Role Users</label>
+							    <select name="role" class="form-group">
+							    	<option align="center" value="">--- Pilih ---</option>
+								    <option value="user">User</option>
+								    <option value="supir">Supir</option>
+							  	</select>
 							</div>
 							<br>
 							<a href="login.php" class="btn btn-primary">Back</a>

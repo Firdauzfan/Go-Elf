@@ -41,7 +41,7 @@ if (!isset($_SESSION['ID'])){
           </thead>
           <tbody>
             <?php
-              $sql = mysqli_query($con, "SELECT * FROM users") or die(mysqli_error());
+              $sql = mysqli_query($con, "SELECT * FROM users WHERE role='user'") or die(mysqli_error());
               $i=0;
               while($data=mysqli_fetch_array($sql)){
                 $i++;

@@ -26,26 +26,21 @@ date_default_timezone_set('Asia/Jakarta');
 <?php
 include('config/connect.php');
 if(isset($_POST['tSubmit'])){
- $Id_Pegawai = $_POST['id_pegawai'];
- $Pass = $_POST['Pass'];
+$Id_Pegawai = $_POST['id_pegawai'];
+$Pass = $_POST['Pass'];
+
+	if (empty($_POST['id_pegawai']) || empty($_POST['Pass'])) {
+ 	echo "<script>";
+    echo "alert('Id Pegawai dan Password Harus Diisi')"; 
+   	echo "</script>"; 
+ 	}else{
+
 	 //$dept_id =  $_POST['dept_id'];
 	 $sql = mysqli_query($con, "SELECT * FROM users WHERE id_pegawai='$Id_Pegawai' AND password='$Pass'") or die(mysqli_error());
 
 	 if(mysqli_num_rows($sql) == 0){
-
-	  $sqli = mysqli_query($con, "SELECT * FROM supir WHERE id_pegawai='$Id_Pegawai' AND password='$Pass'") or die(mysqli_error());
-	  if(mysqli_num_rows($sqli) == 0){
 	  echo "<script>alert('ID Pegawai atau Password salah')</script>";
-	  } else{
-	  	$row = mysqli_fetch_assoc($sqli);
-	 	$_SESSION['ID']=$row['id_supir'];
-	 	$_SESSION['id_peg']=$row['id_pegawai'];
-	 	$_SESSION['name']=$row['username'];
-	 	$_SESSION['date']=$row['created_at'];
-	 	$_SESSION['email']=$row['email'];
-	 	$_SESSION['no_hp']=$row['no_hp'];
-	   echo '<script language="javascript">document.location="reservation.php";</script>';
-	  }
+	  
 	 }else{
 	 	$row = mysqli_fetch_assoc($sql);
 	 	$_SESSION['ID']=$row['id_user'];
@@ -56,8 +51,10 @@ if(isset($_POST['tSubmit'])){
 	 	$_SESSION['dept']=$row['department'];
 	 	$_SESSION['jabatan']=$row['jabatan'];
 	 	$_SESSION['no_hp']=$row['no_hp'];
+	 	$_SESSION['no_hp']=$row['role'];
 	   echo '<script language="javascript">document.location="reservation.php";</script>';
 	 }
+}
 }
 ?>
 <body>
