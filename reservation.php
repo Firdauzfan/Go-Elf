@@ -10,9 +10,15 @@ if (!isset($_SESSION['ID'])){
 // Jika Tidak Arahkan Kembali ke Halaman Login
   header("location: login.php");
 } 
+
 ?>
 
 </head>
+
+<script type="text/javascript">
+  alert($pesan);
+</script>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <?php include('head.php') ?>
@@ -215,13 +221,13 @@ if (!isset($_SESSION['ID'])){
                         //alert(seat);
                         $.ajax({
                             type: "POST",
-                            dataType:"json",
+                            dataType:"text",
                             url: "proses/reservation_proses.php",
                             data: "seat="+seat+"&no_elf="+no_elf+"&keberangkatan="+keberangkatan+"&tujuan="+tujuan,
                             complete: function () {
                               },
-                            success: function (msg) {                    
-                                 alert("Booking Berhasil");
+                            success: function (msg) {      
+                                alert("Booking Di Proses");
                               },
                           });   
                         } 
@@ -288,5 +294,6 @@ if (!isset($_SESSION['ID'])){
 <?php include('tracking.php'); ?>
 <script src="assets/js/jquery.nicescroll.js"></script>
 <script src="assets/js/scripts.js"></script>
+
 </body>
 </html>
