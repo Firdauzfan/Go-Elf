@@ -15,10 +15,6 @@ if (!isset($_SESSION['ID'])){
 
 </head>
 
-<script type="text/javascript">
-  alert($pesan);
-</script>
-
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <?php include('head.php') ?>

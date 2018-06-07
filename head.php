@@ -1,3 +1,20 @@
+<?php
+include('config/connect.php');
+$Id_Pegawai= $_SESSION['id_peg'];
+
+$sqlconf = mysqli_query($con, "SELECT * FROM config") or die(mysqli_error());
+$sconf = mysqli_fetch_assoc($sqlconf);
+
+
+$path=$sconf['path'];
+
+$sql = mysqli_query($con, "SELECT * FROM users WHERE id_pegawai='$Id_Pegawai'") or die(mysqli_error());
+$rowe = mysqli_fetch_assoc($sql);
+$poto = $rowe['photo'];
+$photo = $path."/".$poto;
+
+?>
+
 <header class="main-header">
     <!-- Logo -->
     <a href="reservation.php" class="logo">
@@ -18,13 +35,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="images/logo gspe.png" class="user-image" alt="User Image">
+              <img src="<?php echo $photo; ?>" class="user-image" alt="<?php echo $_SESSION['name']; ?>">
               <span class="hidden-xs"><?php echo $_SESSION['name']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="images/logo gspe.png" class="img-circle" alt="User Image">
+                <img src="<?php echo $photo; ?>" class="img-circle" alt="<?php echo $_SESSION['name']; ?>">
 
                 <p>
                   <?php echo $_SESSION['name']; ?> 
