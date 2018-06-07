@@ -79,16 +79,34 @@ if (!isset($_SESSION['ID'])){
           <!-- quick email widget -->
           <div class="box box-info" style="border-top-color: #ffffff;">
             <div class="main">
+              <?php
+              if ($_SESSION['role']=='user') {
+               ?>
               <h2>Book Your Seat Now?</h2>
+              <?php 
+                }else{
+                  echo "<h2>Check Booking Seat</h2>";
+                }
+              ?>
               <div class="wrapper">
                 <div id="seat-map">
                   <div class="front-indicator"><h3>Front</h3></div>
                 </div>
+                
                 <div class="booking-details">
+                     
                       <div id="legend"></div>
-                      <h3> Selected Seats (<span id="counter">0</span>):</h3>
-                      <button class="checkout-button" id="book">Book Now</button>
+                      
+                      <?php
+                      if ($_SESSION['role']=='user') {
+                       ?>
+                       <h3> Selected Seats (<span id="counter">0</span>):</h3>
+                        <button class="checkout-button" id="book">Book Now</button>   
+                         <?php 
+                        }
+                      ?>
                 </div>
+               
                 <div class="clear"></div>
               </div>
               <script>
@@ -128,9 +146,9 @@ if (!isset($_SESSION['ID'])){
                       legend : {
                         node : $('#legend'),
                         items : [
-                          [ 'f', 'available',   'Driver' ],
+                          [ 'f', 'unavailable',   'Driver' ],
                           [ 'e', 'available',   'Available'],
-                          [ 'f', 'unavailable', 'Already Booked']
+                          [ 'e', 'unavailable', 'Already Booked']
                         ]         
                       },
                       click: function () {
@@ -186,6 +204,7 @@ if (!isset($_SESSION['ID'])){
                       var no_elf = f.options[f.selectedIndex].value;  
                       //clear seat
                       sc.get(["1_1", "1_2", "2_2", "2_3", "2_4", "3_1", "3_3", "3_4", "4_1", "4_3", "4_4", "5_1", "5_2", "5_3", "5_4"]).status('available');
+                      sc.get(["1_4"]).status('unavailable');
                       $.ajax({
                       type : "POST",
                       dataType: "json",
@@ -223,7 +242,7 @@ if (!isset($_SESSION['ID'])){
                             complete: function () {
                               },
                             success: function (msg) {      
-                                alert("Booking Di Proses");
+                                alert("Silahkan Lihat Menu Booking List untuk melihat Hasil Booking");
                               },
                           });   
                         } 

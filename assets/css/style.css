@@ -146,6 +146,11 @@ div.seatCharts-seat.selected {
 div.seatCharts-seat.unavailable {
 	background-color: #980303;
 }
+
+div.seatCharts-seat.unavailable.first-class {
+	background-color: #2483F7;
+}
+
 div.seatCharts-container {
     border-right: 1px solid #adadad;
     width: 50%;
