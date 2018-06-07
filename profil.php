@@ -81,7 +81,11 @@ if(isset($_POST['tSubmit'])){
 <?php
 $Id_Pegawai= $_SESSION['id_peg'];
 
-$path="http://localhost/Go-Elf";
+$sqlconf = mysqli_query($con, "SELECT * FROM config") or die(mysqli_error());
+$sconf = mysqli_fetch_assoc($sqlconf);
+
+
+$path=$sconf['path'];
 
 $sql = mysqli_query($con, "SELECT * FROM users WHERE id_pegawai='$Id_Pegawai'") or die(mysqli_error());
 $rowe = mysqli_fetch_assoc($sql);
