@@ -71,7 +71,9 @@ if (!isset($_SESSION['ID'])){
             </div>
             <div class="box-footer clearfix">
               <button type="button" class="pull-right btn btn-default" id="search">Search  
-                <i class="fa fa-arrow-circle-right"></i></button>
+              <i class="fa fa-arrow-circle-right"></i></button>
+              <a type="button" class="pull-right btn btn-default" href="myrsvp.php">My Reservation</a>
+              
             </div>
           </div>
         </section>
@@ -242,7 +244,8 @@ if (!isset($_SESSION['ID'])){
                             complete: function () {
                               },
                             success: function (msg) {      
-                                alert("Silahkan Lihat Menu Booking List untuk melihat Hasil Booking");
+                                alert("Silahkan Lihat Menu My Reservation untuk melihat Hasil Booking");
+                                document.location="myrsvp.php";
                               },
                           });   
                         } 

@@ -19,12 +19,7 @@ $jml = $row["jml"];
 if($jml<1){
   $sql = mysqli_query($con, "INSERT INTO reservation (id, username, no_seat, no_elf, keberangkatan, tujuan, date_booking) VALUES ('', '$name', '$seat', '$no_elf','$keberangkatan', '$tujuan', NOW())") or die(mysqli_error()); 
 
-  $pesan="Booking Berhasil";
-
-  return $pesan;
 }else{ 
-  $pesan="Anda Sudah Booking!";
 
-  return $pesan;
 }
 ?>
