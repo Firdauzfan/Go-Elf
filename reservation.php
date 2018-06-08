@@ -72,8 +72,13 @@ if (!isset($_SESSION['ID'])){
             <div class="box-footer clearfix">
               <button type="button" class="pull-right btn btn-default" id="search">Search  
               <i class="fa fa-arrow-circle-right"></i></button>
+              <?php
+              if ($_SESSION['role']=='user') {
+               ?>
               <a type="button" class="pull-right btn btn-default" href="myrsvp.php">My Reservation</a>
-              
+              <?php 
+                }
+              ?>
             </div>
           </div>
         </section>
