@@ -33,7 +33,7 @@ if (!isset($_SESSION['ID'])){
       <!-- <div class="row"> -->
   <!--</div> -->
       <!-- /.row (main row) -->
-      <div class="embed-responsive embed-responsive-16by9">
+      <div class="embed-responsive embed-responsive-16by9" style="height: 1000px">
         <iframe class="embed-responsive-item" src="http://35.202.49.101:8080/dashboards/3b1d5d60-6ac2-11e8-ae79-6b7f9ada6497?publicId=65dcdc70-2809-11e8-8468-1bf2911c1791" allowfullscreen></iframe>
       </div>
     </section>
