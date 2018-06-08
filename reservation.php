@@ -31,7 +31,7 @@ if (!isset($_SESSION['ID'])){
           <!-- quick email widget -->
           <div class="box box-info" style="border-top-color: #ffffff;">
             <div class="box-header">
-              <i class="fa fa-envelope"></i>
+              <i class="fa fa-calendar"></i>
               <h3 class="box-title">Reservation</h3>
             </div>
             <div class="box-body">

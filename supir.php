@@ -25,7 +25,7 @@ if (!isset($_SESSION['ID'])){
     <!-- Main content -->
     <section class="content" style="margin-left: 10px;margin-right: 10px;">
       <div class="box-header">
-        <i class="fa fa-table"></i>
+        <i class="fa fa-bus"></i>
         <h3 class="box-title">Data Supir</h3>
       </div>
       <!-- Main row -->
