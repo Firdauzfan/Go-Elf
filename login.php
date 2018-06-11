@@ -52,6 +52,7 @@ $Pass = $_POST['Pass'];
 	 	$_SESSION['jabatan']=$row['jabatan'];
 	 	$_SESSION['no_hp']=$row['no_hp'];
 	 	$_SESSION['role']=$row['role'];
+	 	$_SESSION['pass']=$row['password'];
 	   echo '<script language="javascript">document.location="reservation.php";</script>';
 	 }
 }

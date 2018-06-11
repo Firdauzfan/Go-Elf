@@ -23,13 +23,14 @@ if(isset($_POST['tSubmit'])){
  $Jabatan = $_POST['jabatan'];
  $Email = $_POST['email'];
  $NoHP= $_POST['no_hp'];
+ $Pass= $_POST['Pass'];
  $fileName   = $_FILES['upload']['name'];  
  $fileSize   = $_FILES['upload']['size'];
  $tmpName    = $_FILES['upload']['tmp_name'];
  $fileType   = $_FILES['upload']['type'];  
 
  if ($fileName == '' || $fileSize == 0){ 
-   $updateSQL = mysqli_query($con, "UPDATE users SET username='$Name',department='$Dept',jabatan='$Jabatan',email='$Email',no_hp='$NoHP' WHERE id_pegawai='$Id_Pegawai'") or die(mysqli_error());
+   $updateSQL = mysqli_query($con, "UPDATE users SET username='$Name',department='$Dept',jabatan='$Jabatan',email='$Email',no_hp='$NoHP',password='$Pass' WHERE id_pegawai='$Id_Pegawai'") or die(mysqli_error());
     echo "<script>";
     echo "alert('Data Berhasil Disimpan')"; 
     echo "</script>"; 
@@ -67,7 +68,7 @@ if(isset($_POST['tSubmit'])){
   }elseif($fileSize > 200000){
      $pesan = "Ukuran file Photo maksimal 200 kb";
   }else{
-    $updateSQL = mysqli_query($con, "UPDATE users SET username='$Name',department='$Dept',jabatan='$Jabatan',email='$Email',no_hp='$NoHP', photo='$uploadfile' WHERE id_pegawai='$Id_Pegawai'") or die(mysqli_error());  
+    $updateSQL = mysqli_query($con, "UPDATE users SET username='$Name',department='$Dept',jabatan='$Jabatan',email='$Email',no_hp='$NoHP',password='$Pass', photo='$uploadfile' WHERE id_pegawai='$Id_Pegawai'") or die(mysqli_error());  
     echo "<script>";
     echo "alert('Data Berhasil Disimpan')"; 
     echo "</script>";
@@ -144,7 +145,16 @@ function poto(){
         <td><label>Nama</label></td>
         <td align="left">:</td>
         <td><span id="sprytextfield2">
-          <input name="Name" type="text" id="Name" value="<?php echo $_SESSION['name']; ?>" size="30" readonly />         
+          <input name="Name" type="text" id="Name" value="<?php echo $rowe['username']; ?>" size="30" />         
+        </span></td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+        <td><label>Password</label></td>
+        <td align="left">:</td>
+        <td><span id="sprytextfield2">
+          <input name="Pass" type="password" id="Pass" value="<?php echo $rowe['password']; ?>" size="30"/>         
         </span></td>
         </div>
       </tr>
