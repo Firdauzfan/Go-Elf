@@ -39,9 +39,9 @@ if (!isset($_SESSION['ID'])){
                 <div class="form-group">
                   <label>Keberangkatan</label>
                     <?php
-                    date_default_timezone_set("Asia/Bangkok");
-                    if (date("h:i:sa")>="01:00:00AM" && date("h:i:sa")<"09:00:00AM") {
-                       echo '<input type="text" value="Intercon" class="form-control" name="keberangkatan" id="keberangkatan" style="width: 60%;" readonly="true"/>';
+                    date_default_timezone_set("Asia/Jakarta");
+                    if (date("H:i:s")>="01:00:00" && date("H:i:s")<"09:00:00") {
+                       echo '<input type="text" value="Intercon" class="form-control" name="keberangkatan" id="keberangkatan" style="width: 60%;" disabled="disabled"/>';
                     }
                     else{
                        echo '<input type="text" value="Tekno" class="form-control" name="keberangkatan" id="keberangkatan" style="width: 60%;" disabled="disabled"/>';
@@ -51,11 +51,12 @@ if (!isset($_SESSION['ID'])){
                 <div class="form-group">
                   <label>Tujuan</label>
                     <?php
-                    if (date("h:i:sa")>="07:00:00AM" && date("h:i:sa")<"09:00:00AM") {
-                       echo ' <input type="text" value="Tekno" class="form-control" name="tujuan" id="tujuan" style="width: 60%;" disabled="disabled" />';
+                    date_default_timezone_set("Asia/Jakarta");
+                    if (date("H:i:s")>="13:00:00" && date("H:i:s")<"21:00:00") {
+                       echo ' <input type="text" value="Intercon" class="form-control" name="tujuan" id="tujuan" style="width: 60%;" disabled="disabled" />';
                     }
                     else{
-                       echo '<input type="text" value="Intercon" class="form-control" name="tujuan" id="tujuan" style="width: 60%;" disabled="disabled" />';
+                       echo '<input type="text" value="Tekno" class="form-control" name="tujuan" id="tujuan" style="width: 60%;" disabled="disabled" />';
                     }
                     ?>
                 </div>
