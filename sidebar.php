@@ -9,9 +9,26 @@
           <i class="fa fa-calendar"></i> <span>Reservation</span>
         </a>
       </li>
+      <?php
+      include('config/connect.php');
+      $role= $_SESSION['role'];
+      if ($role=='supir') {
+        echo '<li>
+        <a href="bookelf.php">
+          <i class="fa fa-calendar"></i> <span>Booking ELf</span>
+        </a>
+      </li>
+      <li>';
+      }
+      ?>
+      <li>
+        <a href="list_booking_driver.php">
+          <i class="fa fa-table"></i> <span>List Booking Driver</span>
+        </a>
+      </li>
       <li>
         <a href="list_booking.php">
-          <i class="fa fa-table"></i> <span>List Booking</span>
+          <i class="fa fa-table"></i> <span>List Booking User</span>
         </a>
       </li>
       <li>

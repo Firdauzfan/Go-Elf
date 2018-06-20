@@ -36,7 +36,7 @@ if (!isset($_SESSION['ID'])){
               <th width="8%">No</th>
               <th>Username</th>
               <th>Email</th>
-              <th>Created date</th>
+              <th>Department</th>
             </tr>
           </thead>
           <tbody>
@@ -48,13 +48,14 @@ if (!isset($_SESSION['ID'])){
                 $id = $data['id'];
                 $username = $data['username'];
                 $email = $data['email'];
+                $department = $data['department'];
                 $created_at = $data['created_at'];
                 $new_created_at = date("d-m-Y", strtotime($created_at));
                 echo '<tr class="info">';
                     echo '<td>'.$i.'</td>';
                     echo '<td>'.$username.'</td>';
                     echo '<td>'.$email.'</td>';
-                    echo '<td>'.$new_created_at.'</td>';
+                    echo '<td>'.$department.'</td>';
                 echo '</tr>';     
               }
             ?>

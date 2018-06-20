@@ -37,11 +37,12 @@ if (!isset($_SESSION['ID'])){
               <th>Username</th>
               <th>No HP</th>
               <th>Email</th>
-              <th>Created date</th>
+              <th>Role</th>
             </tr>
           </thead>
           <tbody>
             <?php
+              $tgl_booking = date("Y-m-d");
               $sql = mysqli_query($con, "SELECT * FROM users WHERE role='supir'") or die(mysqli_error());
               $i=0;
               while($data=mysqli_fetch_array($sql)){
@@ -49,14 +50,13 @@ if (!isset($_SESSION['ID'])){
                 $username = $data['username'];
                 $no_hp = $data['no_hp'];
                 $email = $data['email'];
-                $created_at = $data['created_at'];
-                $new_created_at = date("d-m-Y", strtotime($created_at));
+                $role = $data['role'];
                 echo '<tr class="info">';
                     echo '<td>'.$i.'</td>';
                     echo '<td>'.$username.'</td>';
                     echo '<td>'.$no_hp.'</td>';
                     echo '<td>'.$email.'</td>';
-                    echo '<td>'.$new_created_at.'</td>';
+                    echo '<td>'.$role.'</td>';
                 echo '</tr>';     
               }
             ?>

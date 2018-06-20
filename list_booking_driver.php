@@ -12,16 +12,6 @@ if (!isset($_SESSION['ID'])){
 // Jika Tidak Arahkan Kembali ke Halaman Login
   header("location: login.php");
 } 
-
-
-if(!empty($_POST)){
-   $ids=$_POST['id'];
-
-   $sqldel = mysqli_query($con, "DELETE FROM `reservation` WHERE id='$ids'") or die(mysqli_error());
-   echo "<script>alert('Cancel Booking Berhasil')</script>";
-
-   echo '<script language="javascript">document.location="reservation.php";</script>';
-  }
 ?>
 
 </head>
@@ -36,7 +26,7 @@ if(!empty($_POST)){
     <section class="content" style="margin-left: 10px;margin-right: 10px;">
       <div class="box-header">
         <i class="fa fa-table"></i>
-        <h3 class="box-title">My Booking</h3>
+        <h3 class="box-title">List Booking</h3>
       </div>
       <!-- Main row -->
       <!-- <div class="row"> -->
@@ -45,48 +35,28 @@ if(!empty($_POST)){
             <tr class="danger">
               <th width="8%">No</th>
               <th>Username</th>
-              <th>Keberangkatan</th>
-              <th>Tujuan</th>
               <th>Elf ke</th>
-              <th>Kursi ke</th>
               <th>Booking Time</th>
-              <th>Cancel Booking</th>
             </tr>
           </thead>
           <tbody>
             <?php
-              $user=$_SESSION['name'];
-              $sql = mysqli_query($con, "SELECT * FROM `reservation` WHERE date(date_booking) = CURDATE() AND username='$user'") or die(mysqli_error());
+              $sql = mysqli_query($con, "SELECT * FROM `rsvpDriver` WHERE date(tgl_booking) = CURDATE()") or die(mysqli_error());
               $i=0;
               while($data=mysqli_fetch_array($sql)){
                 $i++;
-                $id=$data['id'];
-                $username = $data['username'];
-                $Keberangkatan = $data['keberangkatan'];
-                $tujuan = $data['tujuan'];
-                $elf = $data['no_elf'];
-                $kursi = $data['no_seat'];
-                $booking_at = $data['date_booking'];
+                $username = $data['Nama_Supir'];
+                $elf = $data['elf_ke'];
+                $booking_at = $data['tgl_booking'];
                 echo '<tr class="info">';
                     echo '<td>'.$i.'</td>';
                     echo '<td>'.$username.'</td>';
-                    echo '<td>'.$Keberangkatan.'</td>';
-                    echo '<td>'.$tujuan.'</td>';
                     echo '<td>'.$elf.'</td>';
-                    echo '<td>'.$kursi.'</td>';
                     echo '<td>'.$booking_at.'</td>';
-                    echo '<td>
-                    <form class="form-horizontal" action="" method="post">
-                    <input type="hidden" name="id" value="'.$id.'"/>
-                    <div class="form-action">
-                        <button type="submit" class="btn btn-danger">Cancel</button>
-                    </div>
-                    </form>
-                    </td>';
                 echo '</tr>';     
               }
             ?>
-          </tbody> 
+          </tbody>
         </table>
   <!--</div> -->
       <!-- /.row (main row) -->

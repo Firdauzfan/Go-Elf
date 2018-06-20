@@ -17,7 +17,7 @@ if (!isset($_SESSION['ID'])){
 if(!empty($_POST)){
    $ids=$_POST['id'];
 
-   $sqldel = mysqli_query($con, "DELETE FROM `reservation` WHERE id='$ids'") or die(mysqli_error());
+   $sqldel = mysqli_query($con, "DELETE FROM `rsvpDriver` WHERE id='$ids'") or die(mysqli_error());
    echo "<script>alert('Cancel Booking Berhasil')</script>";
 
    echo '<script language="javascript">document.location="reservation.php";</script>';
@@ -45,10 +45,7 @@ if(!empty($_POST)){
             <tr class="danger">
               <th width="8%">No</th>
               <th>Username</th>
-              <th>Keberangkatan</th>
-              <th>Tujuan</th>
               <th>Elf ke</th>
-              <th>Kursi ke</th>
               <th>Booking Time</th>
               <th>Cancel Booking</th>
             </tr>
@@ -56,24 +53,18 @@ if(!empty($_POST)){
           <tbody>
             <?php
               $user=$_SESSION['name'];
-              $sql = mysqli_query($con, "SELECT * FROM `reservation` WHERE date(date_booking) = CURDATE() AND username='$user'") or die(mysqli_error());
+              $sql = mysqli_query($con, "SELECT * FROM `rsvpDriver` WHERE Nama_Supir='$user'") or die(mysqli_error());
               $i=0;
               while($data=mysqli_fetch_array($sql)){
                 $i++;
                 $id=$data['id'];
-                $username = $data['username'];
-                $Keberangkatan = $data['keberangkatan'];
-                $tujuan = $data['tujuan'];
-                $elf = $data['no_elf'];
-                $kursi = $data['no_seat'];
-                $booking_at = $data['date_booking'];
+                $username = $data['Nama_Supir'];
+                $elf = $data['elf_ke'];
+                $booking_at = $data['tgl_booking'];
                 echo '<tr class="info">';
                     echo '<td>'.$i.'</td>';
                     echo '<td>'.$username.'</td>';
-                    echo '<td>'.$Keberangkatan.'</td>';
-                    echo '<td>'.$tujuan.'</td>';
                     echo '<td>'.$elf.'</td>';
-                    echo '<td>'.$kursi.'</td>';
                     echo '<td>'.$booking_at.'</td>';
                     echo '<td>
                     <form class="form-horizontal" action="" method="post">
