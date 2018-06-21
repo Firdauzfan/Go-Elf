@@ -41,7 +41,7 @@ if(isset($_POST['tSubmit'])){
  if ($jml<1 && $jml2<1) {
  	$sql = mysqli_query($con, "INSERT INTO rsvpDriver (id,ID_Pegawai,Nama_Supir,no_hp,email,elf_ke,tgl_booking) VALUES ('', '$Id_Pegawai', '$Nama_Supir','$no_hp','$email','$no_elf','$tanggal')") or die(mysqli_error());
 
- 	echo '<script language="javascript">document.location="reservation.php";</script>';
+ 	echo '<script language="javascript">document.location="myrsvpdriver.php";</script>';
  }
  else{
  	echo "<script>";
