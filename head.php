@@ -37,50 +37,68 @@ $photo = $path."/".$poto;
            <?php
           if ($_SESSION['role']=='supir') {
           ?>
+
+          <?php
+          $supirName= $_SESSION['name'];
+          $sql_elfke = mysqli_query($con, "SELECT * FROM `rsvpDriver` WHERE tgl_booking=CURRENT_DATE() AND Nama_Supir='$supirName'") or die(mysqli_error());
+          $rowelf = mysqli_fetch_assoc($sql_elfke);
+          $elfke = $rowelf["elf_ke"];
+          ?>
+
+          <?php
+          $sql_jml = mysqli_query($con, "SELECT COUNT(username) AS jml FROM `reservation` WHERE reservation.status=0 AND reservation.date_booking>=CURDATE() AND reservation.no_elf='$elfke' ") or die(mysqli_error());
+          $row = mysqli_fetch_assoc($sql_jml);
+          $jml = $row["jml"];
+          ?>
           <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="myFunction()">
               <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
+              <span class="label label-warning" id="notification-count"><?php echo $jml; ?></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
+              <li class="header">You have <?php echo $jml; ?> notifications</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
+                       <?php
+                        $tgl_booking = date("Y-m-d");
+                        $sql = mysqli_query($con, "SELECT * FROM `reservation` WHERE reservation.date_booking>=CURDATE() AND reservation.no_elf='$elfke' limit 10") or die(mysqli_error());
+                        while($data=mysqli_fetch_array($sql)){
+                          $username = $data['username'];
+                          $no_seat = $data['no_seat'];
+                          $keberangkatan = $data['keberangkatan'];
+                          $tujuan = $data['tujuan'];
+                          echo '
+                          <li>
+                          <a href="#">
+                          <i class="fa fa-users text-aqua"></i> '.$username.' memesan kursi '.$no_seat.'
+                          </a>
+                          </li>';    
+                        }
+                      ?>
                 </ul>
               </li>
-              <li class="footer"><a href="#">View all</a></li>
+              <li class="footer"><a href="list_booking.php">View all</a></li>
             </ul>
           </li>
           <?php
-          }
-          ?>
+    }
+    ?>
+
+    <script>
+    function myFunction() {
+      $.ajax({
+      url: "proses/notif.php",
+      type: "POST",
+      processData:false,
+      success: function(data){
+        $("#notification-count").remove();          
+      },
+      error: function(){}           
+    });
+    }
+    </script>
+
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo $photo; ?>" class="user-image" alt="<?php echo $_SESSION['name']; ?>">

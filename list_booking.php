@@ -44,7 +44,16 @@ if (!isset($_SESSION['ID'])){
           </thead>
           <tbody>
             <?php
-              $sql = mysqli_query($con, "SELECT * FROM `reservation` WHERE date(date_booking) = CURDATE()") or die(mysqli_error());
+              if ($_SESSION['role']=='supir') {
+                $supirName= $_SESSION['name'];
+                $sql_elfke = mysqli_query($con, "SELECT * FROM `rsvpDriver` WHERE tgl_booking=CURRENT_DATE() AND Nama_Supir='$supirName'") or die(mysqli_error());
+                $rowelf = mysqli_fetch_assoc($sql_elfke);
+                $elfke = $rowelf["elf_ke"];
+
+                $sql = mysqli_query($con, "SELECT * FROM `reservation` WHERE date(date_booking) = CURDATE() AND no_elf='$elfke'") or die(mysqli_error());
+              }else{
+                $sql = mysqli_query($con, "SELECT * FROM `reservation` WHERE date(date_booking) = CURDATE()") or die(mysqli_error());
+              }
               $i=0;
               while($data=mysqli_fetch_array($sql)){
                 $i++;

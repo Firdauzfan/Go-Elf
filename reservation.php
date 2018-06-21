@@ -40,7 +40,7 @@ if (!isset($_SESSION['ID'])){
                   <label>Keberangkatan</label>
                     <?php
                     date_default_timezone_set("Asia/Jakarta");
-                    if (date("H:i:s")>="01:00:00" && date("H:i:s")<"09:00:00") {
+                    if (date("H:i:s")>="01:00:00" && date("H:i:s")<"10:00:00") {
                        echo '<input type="text" value="Intercon" class="form-control" name="keberangkatan" id="keberangkatan" style="width: 60%;" disabled="disabled"/>';
                     }
                     else{
@@ -52,7 +52,7 @@ if (!isset($_SESSION['ID'])){
                   <label>Tujuan</label>
                     <?php
                     date_default_timezone_set("Asia/Jakarta");
-                    if (date("H:i:s")>="13:00:00" && date("H:i:s")<"21:00:00") {
+                    if (date("H:i:s")>="10:00:00" && date("H:i:s")<"21:00:00") {
                        echo ' <input type="text" value="Intercon" class="form-control" name="tujuan" id="tujuan" style="width: 60%;" disabled="disabled" />';
                     }
                     else{
