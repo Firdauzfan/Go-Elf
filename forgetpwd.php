@@ -1,39 +1,17 @@
+<!DOCTYPE html>
 <html>
 <head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Reset Password</title>
+
 <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
-<body>
-<div class="wrapper-f">
-<div class="row">
-		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-			<div class="login-panel panel panel-default">
-				<img class="img-responsive" alt="GSPE" src="images/logovio.png">
-				<div class="panel-heading"><b>Reset Password</b></div>
-				<div class="panel-body">
-					<form action="forgetpwd.php" method="post">
-						<fieldset>
-							<div class="form-group">
-								<label>Masukkan Email anda</label>
-							</div>
-							<div class="form-group">
-								<input class="form-control" name="email" type="email" placeholder="Masukkan Email" required oninvalid="this.setCustomValidity('Masukkan Email Dengan benar')">
-							</div>
-							<br>
-							<input class="button" name="act_resset" type="submit" value="Reset">
-
-						</fieldset>
-					</form>
-				</div>
-			</div>
-		</div><!-- /.col-->
-	</div>
-
-</div>
-<div style="width:600px; margin:auto">
-<?PHP 
+<?php
 include('config/connect.php');
 ///////////////////////////////////////////////////////////////////////
 if (isset($_POST['act_resset']))  {
@@ -90,7 +68,32 @@ echo "<script>alert('Email Tidak Ditemukan')</script>";
 
 ?>
 
-</div>
+<body>
+<br>
+<div class="row">
+		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+			<div class="login-panel panel panel-default">
+				<img class="img-responsive" alt="GSPE" src="images/logovio.png">
+				<div class="panel-heading"><b>Reset Password</b></div>
+				<div class="panel-body">
+					<form action="forgetpwd.php" method="post">
+						<fieldset>
+							<div class="form-group">
+								<label>Masukkan Email anda</label>
+							</div>
+							<div class="form-group">
+								<input class="form-control" name="email" type="email" placeholder="Masukkan Email" required oninvalid="this.setCustomValidity('Masukkan Email Dengan benar')">
+							</div>
+							<br>
+							<input class="button" name="act_resset" type="submit" value="Reset">
+
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div><!-- /.col-->
+	</div>
+
 
 </body>
 </html>
