@@ -79,7 +79,7 @@ echo "<script>alert('Email Tidak Ditemukan')</script>";
 					<form action="forgetpwd.php" method="post">
 						<fieldset>
 							<div class="form-group">
-								<label>Masukkan Email anda</label>
+								<label>Masukkan Email Anda</label>
 							</div>
 							<div class="form-group">
 								<input class="form-control" name="email" type="email" placeholder="Masukkan Email" required oninvalid="this.setCustomValidity('Masukkan Email Dengan benar')">

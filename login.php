@@ -72,9 +72,10 @@ $Pass = $_POST['Pass'];
 								<input class="form-control" placeholder="ID Pegawai" name="id_pegawai" type="text" autofocus="">
 							</div>
 							<div class="form-group">
-								<input class="form-control" placeholder="Password" name="Pass" type="password">
+								<input class="form-control" id="Pass" placeholder="Password" name="Pass" type="password">
+								<input type="checkbox" onclick="myFunction()"> Show Password
 							</div>
-							<span><a href="forgetpwd.php">Forget Password</a></span>
+							<span><a href="forgetpwd.php">Forgot Password</a></span>
 							<br>
 							<br>
 							<input type="Submit" class="btn btn-primary" name="tSubmit" value=" Login ">
@@ -84,7 +85,17 @@ $Pass = $_POST['Pass'];
 				</div>
 			</div>
 		</div><!-- /.col-->
-	</div><!-- /.row -->	
+	</div><!-- /.row -->
+	<script>
+	function myFunction() {
+	    var x = document.getElementById("Pass");
+	    if (x.type === "password") {
+	        x.type = "text";
+	    } else {
+	        x.type = "password";
+	    }
+	}
+	</script>	
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<!-- <script src="js/chart.min.js"></script>
