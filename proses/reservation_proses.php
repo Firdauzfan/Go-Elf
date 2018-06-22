@@ -5,7 +5,7 @@ if (!isset($_SESSION['ID'])){
   header("location: login.php");
 }
 
-date_default_timezone_set("Asia/Bangkok");
+date_default_timezone_set('Asia/Jakarta');
 
 //$name = $_POST['name'];
 $name = $_SESSION['name'];

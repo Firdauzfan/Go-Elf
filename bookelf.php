@@ -44,7 +44,7 @@ if(isset($_POST['tSubmit'])){
  	echo '<script language="javascript">document.location="myrsvpdriver.php";</script>';
  }
  else{
- 	echo "<script>";
+ 	  echo "<script>";
     echo "alert('Sudah Dibooking Oleh Supir Lain')"; 
    	echo "</script>"; 
  }

@@ -74,6 +74,8 @@ $Pass = $_POST['Pass'];
 							<div class="form-group">
 								<input class="form-control" placeholder="Password" name="Pass" type="password">
 							</div>
+							<span><a href="forgetpwd.php">Forget Password</a></span>
+							<br>
 							<br>
 							<input type="Submit" class="btn btn-primary" name="tSubmit" value=" Login ">
 							<a href="register.php" class="btn btn-primary">Register</a>

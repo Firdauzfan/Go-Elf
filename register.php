@@ -21,9 +21,9 @@ date_default_timezone_set('Asia/Jakarta');
 include('config/connect.php');
 if(isset($_POST['tSubmit'])){
 
- if (empty($_POST['Pass']) || empty($_POST['id_pegawai']) || empty($_POST['role'])) {
+ if (empty($_POST['Pass']) || empty($_POST['id_pegawai']) || empty($_POST['email']) || empty($_POST['role'])) {
  	echo "<script>";
-    echo "alert('Id Pegawai dan Password dan Role Harus Diisi')"; 
+    echo "alert('Id Pegawai,Password,Email dan Role Harus Diisi')"; 
    	echo "</script>"; 
  }else{
 
@@ -36,7 +36,7 @@ if(isset($_POST['tSubmit'])){
  $NoHP= $_POST['no_hp'];
  $Role= $_POST['role'];
 
- $sql_cek = mysqli_query($con, "SELECT COUNT(username) AS jml FROM users WHERE id_pegawai='$Id_Pegawai' ") or die(mysqli_error());
+ $sql_cek = mysqli_query($con, "SELECT COUNT(username) AS jml FROM users WHERE id_pegawai='$Id_Pegawai' || email='$Email'") or die(mysqli_error());
  $row = mysqli_fetch_assoc($sql_cek);
  $jml = $row["jml"];
 
@@ -47,7 +47,7 @@ if(isset($_POST['tSubmit'])){
  }
  else{
  	echo "<script>";
-    echo "alert('Id Pegawai Sudah Terdaftar!')"; 
+    echo "alert('Id Pegawai atau Email Sudah Terdaftar!')"; 
    	echo "</script>"; 
  }
  }
@@ -90,7 +90,7 @@ if(isset($_POST['tSubmit'])){
 								<label>Role Users</label>
 							    <select name="role" class="form-group">
 							    	<option align="center" value="">--- Pilih ---</option>
-								    <option value="user">User</option>
+								    <option value="user">Penumpang</option>
 								    <option value="supir">Supir</option>
 							  	</select>
 							</div>
