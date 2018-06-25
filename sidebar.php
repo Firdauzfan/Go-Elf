@@ -28,7 +28,7 @@
       </li>
       <li>
         <a href="list_booking.php">
-          <i class="fa fa-table"></i> <span>List Booking User</span>
+          <i class="fa fa-table"></i> <span>List Booking Penumpang</span>
         </a>
       </li>
       <li>
