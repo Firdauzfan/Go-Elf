@@ -19,7 +19,7 @@ $row = mysqli_fetch_assoc($sql_cek);
 $jml = $row["jml"];
 
 if($jml<1){
-  $sql = mysqli_query($con, "INSERT INTO reservation (id, username, no_seat, no_elf, keberangkatan, tujuan, date_booking) VALUES ('', '$name', '$seat', '$no_elf','$keberangkatan', '$tujuan', NOW())") or die(mysqli_error()); 
+  $sql = mysqli_query($con, "INSERT INTO reservation (id, username, no_seat, no_elf, keberangkatan, tujuan, date_booking) VALUES ('', '$name', '$seat', '$no_elf','$keberangkatan', '$tujuan', DATE_ADD(NOW(), INTERVAL 7 HOUR))") or die(mysqli_error()); 
 
 }else{ 
 
