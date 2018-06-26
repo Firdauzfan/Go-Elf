@@ -12,6 +12,16 @@ if (!isset($_SESSION['ID'])){
 // Jika Tidak Arahkan Kembali ke Halaman Login
   header("location: login.php");
 } 
+
+if(!empty($_POST)){
+   $ids=$_POST['id'];
+
+   $sqldel = mysqli_query($con, "DELETE FROM `reservation` WHERE id='$ids'") or die(mysqli_error());
+   echo "<script>alert('Reject Booking Berhasil')</script>";
+
+   echo '<script language="javascript">document.location="reservation.php";</script>';
+  }
+?>
 ?>
 
 </head>
@@ -40,6 +50,12 @@ if (!isset($_SESSION['ID'])){
               <th>Elf ke</th>
               <th>Kursi ke</th>
               <th>Booking Time</th>
+              <?php
+              $role= $_SESSION['role'];
+              if ($role=='supir') {
+                echo '<th>Reject Booking</th>';
+              }
+              ?>
             </tr>
           </thead>
           <tbody>
@@ -57,6 +73,7 @@ if (!isset($_SESSION['ID'])){
               $i=0;
               while($data=mysqli_fetch_array($sql)){
                 $i++;
+                $id=$data['id'];
                 $username = $data['username'];
                 $Keberangkatan = $data['keberangkatan'];
                 $tujuan = $data['tujuan'];
@@ -71,6 +88,16 @@ if (!isset($_SESSION['ID'])){
                     echo '<td>'.$elf.'</td>';
                     echo '<td>'.$kursi.'</td>';
                     echo '<td>'.$booking_at.'</td>';
+                    if ($_SESSION['role']=='supir') {
+                      echo '<td>
+                    <form class="form-horizontal" action="" method="post">
+                    <input type="hidden" name="id" value="'.$id.'"/>
+                    <div class="form-action">
+                        <button type="submit" class="btn btn-danger">Reject</button>
+                    </div>
+                    </form>
+                    </td>';
+                    }
                 echo '</tr>';     
               }
             ?>
