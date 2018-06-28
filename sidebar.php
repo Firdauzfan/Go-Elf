@@ -33,12 +33,17 @@
       </li>
       <li>
         <a href="supir.php">
-          <i class="fa fa-bus"></i> <span>Data Supir</span>
+          <i class="fa fa-users"></i> <span>Data Supir</span>
         </a>
       </li>
       <li>
         <a href="penumpang.php">
           <i class="fa fa-address-card-o"></i> <span>Data Penumpang</span>
+        </a>
+      </li>
+      <li>
+        <a href="elf.php">
+          <i class="fa fa-bus"></i> <span>Data Elf</span>
         </a>
       </li>
       <li>

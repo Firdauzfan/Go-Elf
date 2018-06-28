@@ -22,7 +22,6 @@ if(!empty($_POST)){
    echo '<script language="javascript">document.location="reservation.php";</script>';
   }
 ?>
-?>
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

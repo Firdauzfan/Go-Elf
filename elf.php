@@ -12,6 +12,7 @@ if (!isset($_SESSION['ID'])){
 // Jika Tidak Arahkan Kembali ke Halaman Login
   header("location: login.php");
 } 
+
 ?>
 
 </head>
@@ -25,8 +26,8 @@ if (!isset($_SESSION['ID'])){
     <!-- Main content -->
     <section class="content" style="margin-left: 10px;margin-right: 10px;">
       <div class="box-header">
-        <i class="fa fa-address-card-o"></i>
-        <h3 class="box-title">Data Penumpang</h3>
+        <i class="fa fa-bus"></i>
+        <h3 class="box-title">Data Elf Go-Elf</h3>
       </div>
       <!-- Main row -->
       <!-- <div class="row"> -->
@@ -34,38 +35,35 @@ if (!isset($_SESSION['ID'])){
           <thead>
             <tr class="danger">
               <th width="8%">No</th>
-              <th>Username</th>
-               <?php
-              $role= $_SESSION['role'];
-              if ($role=='supir') {
-                echo '<th>Nomor HP</th>';
-              }
-              ?>
-              <th>Email</th>
-              <th>Department</th>
+              <th>Elf-Ke</th>
+              <th>Merek</th>
+              <th>Type</th>
+              <th>Jenis</th>
+              <th>Plat Nomor</th>
             </tr>
           </thead>
           <tbody>
             <?php
-              $sql = mysqli_query($con, "SELECT * FROM users WHERE role='user'") or die(mysqli_error());
+              
+              $sql = mysqli_query($con, "SELECT * FROM `elf`") or die(mysqli_error());
+
               $i=0;
+
               while($data=mysqli_fetch_array($sql)){
                 $i++;
-                $id = $data['id'];
-                $username = $data['username'];
-                $no_hp = $data['no_hp'];
-                $email = $data['email'];
-                $department = $data['department'];
-                $created_at = $data['created_at'];
-                $new_created_at = date("d-m-Y", strtotime($created_at));
+                $id=$data['id'];
+                $nama_elf = $data['name_elf'];
+                $merk = $data['merk'];
+                $type = $data['type'];
+                $jenis = $data['jenis'];
+                $plat = $data['plat_nomor'];
                 echo '<tr class="info">';
                     echo '<td>'.$i.'</td>';
-                    echo '<td>'.$username.'</td>';
-                    if ($_SESSION['role']=='supir') {
-                      echo '<td>'.$no_hp.'</td>';
-                    }
-                    echo '<td>'.$email.'</td>';
-                    echo '<td>'.$department.'</td>';
+                    echo '<td>'.$nama_elf.'</td>';
+                    echo '<td>'.$merk.'</td>';
+                    echo '<td>'.$type.'</td>';
+                    echo '<td>'.$jenis.'</td>';
+                    echo '<td>'.$plat.'</td>';
                 echo '</tr>';     
               }
             ?>
