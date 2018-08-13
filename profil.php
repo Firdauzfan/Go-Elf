@@ -109,111 +109,77 @@ function poto(){
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper table-responsive">
     <!-- Main content -->
-    <section class="content">
-      <div class="box-header">
-        <i class="fa fa-table"></i>
-        <h3 class="box-title">Data Profil <?php echo $_SESSION['name']; ?></h3>
+     <section class="content">
+       <div class="box-header">
+       <div class="box box-primary">
+            <div class="box-header with-border">
+                      <i class="fa fa-table"></i>
+        <h3 class="box-title">Data Profil <?php echo $rowe['username']; ?></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form action="profil.php" method="post" name="profil" id="profil" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <img  name="img" id="img" class ="classfancy" src="<?php echo $photo; ?>" href = "<?php echo $photo; ?>" title="<?php echo $_SESSION['name']; ?>" width="150" height="200" border="1" align="center" style="border-color:#FC9" />
+                </div>
+
+                <div class="form-group">
+                  <label for="NoID">Nomor ID</label>
+                  <input name="id_pegawai" class="form-control" type="text" id="id_pegawai" value="<?php echo $_SESSION['id_peg']; ?>" size="15" readonly />
+                </div>
+
+               <div class="form-group">
+                  <label for="Nama">Nama</label>
+                  <input name="Name" class="form-control" type="text" id="Name" value="<?php echo $rowe['username']; ?>" size="30" />    
+                </div>
+
+                <div class="form-group">
+                  <label for="Password">Password</label>
+                   <input name="Pass" class="form-control" type="password" id="Pass" value="<?php echo $rowe['password']; ?>" size="30"/>   
+                </div>
+
+                <div class="form-group">
+                  <label for="Department">Department</label>
+                  <input name="dept" class="form-control" type="text" id="dept" size="30" value="<?php echo $rowe['department']; ?>"/>  
+                </div>
+
+                <div class="form-group">
+                  <label for="Jabatan">Jabatan</label>
+                  <input name="jabatan" class="form-control" type="text" id="jabatan" value="<?php echo $rowe['jabatan']; ?>" size="30" />  
+                </div>
+
+                <div class="form-group">
+                  <label for="Email">Email</label>
+                  <input name="email" class="form-control" type="text" id="email" value="<?php echo strtolower($rowe['email']); ?>" size="30" />  
+                </div>
+
+                <div class="form-group">
+                  <label for="Mobile">Mobile</label>
+                  <input name="no_hp" class="form-control" type="text" id="no_hp" value="<?php echo $rowe['no_hp']; ?>" size="30" />  
+                </div>
+
+                <div class="form-group">
+                  <label for="Photo">Photo</label>
+                  <input type="file" name="upload" id="upload" onChange="poto()"/>
+
+                  <p class="help-block">File photo maksimal 200 kb.</p>
+                </div>
+
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <input type="submit" class="btn btn-primary" name="tSubmit" name="tSubmit" value="Update Account" />
+              </div>
+            </form>
+          </div>
+
+
       </div>
       <!-- Main row -->
       <!-- <div class="row"> -->
 
-<form action="profil.php" method="post" name="profil" id="profil" enctype="multipart/form-data">
-<fieldset>
-    <table border="1" cellpadding="5" cellspacing="10" align="center" style="margin-left: 10px">
-      <tr>
-       <td><table border="0" cellpadding="2" cellspacing="1">
-      <tr>
-      <div class="form-group">
-        <td align="center" valign="top">
-        <img  name="img" id="img" class ="classfancy" src="<?php echo $photo; ?>" href = "<?php echo $photo; ?>" title="<?php echo $_SESSION['name']; ?>" width="137" height="160" border="1" style="border-color:#FC9" /></td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-        <td width="100">Nomor ID</td>
-        <td width="10">:</td>
-        <td><label><span id="sprytextfield1">
-          <input name="id_pegawai" type="text" id="id_pegawai" value="<?php echo $_SESSION['id_peg']; ?>" size="15" readonly />
-        </span> </label></td>
-        </div>
-      </tr>
-      <tr>
-        
-      </tr>
-      <tr>
-        <div class="form-group">
-        <td><label>Nama</label></td>
-        <td align="left">:</td>
-        <td><span id="sprytextfield2">
-          <input name="Name" type="text" id="Name" value="<?php echo $rowe['username']; ?>" size="30" />         
-        </span></td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-        <td><label>Password</label></td>
-        <td align="left">:</td>
-        <td><span id="sprytextfield2">
-          <input name="Pass" type="password" id="Pass" value="<?php echo $rowe['password']; ?>" size="30"/>         
-        </span></td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-        <td>Department</td>
-        <td align="left">:</td>
-        <td><span id="sprytextfield6">
-          <input name="dept" type="text" id="dept" size="30" value="<?php echo $rowe['department']; ?>"/>         
-        </span></td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-        <td>Jabatan</td>
-        <td align="left">:</td>
-        <td><span id="sprytextfield5">
-          <input name="jabatan" type="text" id="jabatan" value="<?php echo $rowe['jabatan']; ?>" size="30" />         
-        </span></td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-        <td>Email</td>
-        <td align="left">:</td>
-        <td><span id="sprytextfield3">
-          <input name="email" type="text" id="email" value="<?php echo strtolower($rowe['email']); ?>" size="30" />          
-          <!-- <span class="textfieldRequiredMsg"></span><span class="textfieldInvalidFormatMsg">Invalid format.</span><span class="textfieldMinCharsMsg">Minimum number of characters not met.</span><span class="textfieldMaxCharsMsg">Exceeded maximum number of characters.</span> --></span></td>
-        </div>
-      </tr>
-      <tr>
-        <div class="form-group">
-        <td>Mobile </td>
-        <td align="left">:</td>
-        <td><span id="sprytextfield4">
-          <input name="no_hp" type="text" id="no_hp" value="<?php echo $rowe['no_hp']; ?>" size="30" />          
-          <!-- <span class="textfieldInvalidFormatMsg">Invalid format.</span><span class="textfieldMinCharsMsg">Minimum number of characters not met.</span><span class="textfieldMaxCharsMsg">Exceeded maximum number of characters.</span>  --></span></td>
-          </div>
-      </tr>
-      <tr>
-        <td>Photo</td>
-        <td align="left">:</td>
-        <td nowrap="nowrap"><input type="file" name="upload" id="upload" onChange="poto()"/></td>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>File photo maksimal 200 kb.</td> 
-      </tr> 
-      <tr>
-        <td align="right"><input type="submit" name="tSubmit" name="tSubmit" value="Update Account" /></td>
-      </tr>     
-    </table></td>
-  </tr>
-</table>
-</fieldset>
-</form>
-  <!--</div> -->
-      <!-- /.row (main row) -->
     </section>
     <!-- /.content -->
   </div>
